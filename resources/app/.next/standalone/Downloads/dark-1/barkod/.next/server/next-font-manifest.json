@@ -1,0 +1,64 @@
+{
+  "app": {
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/cash-register/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/categories/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/customers/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/products/[id]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/products/new/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/products/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/purchases/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/reports/customer/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/reports/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/reports/profit/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/reports/sales/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/reports/stock/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/returns/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/sales/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/settings/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/stock-count/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/stock/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/Downloads/dark-1/barkod/app/[locale]/(dashboard)/suppliers/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

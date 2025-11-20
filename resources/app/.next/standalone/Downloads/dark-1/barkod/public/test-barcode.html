@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Barkodları - Barkod Sistemi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .barcode-container {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #2563eb;
+            text-align: center;
+        }
+        h2 {
+            color: #1f2937;
+            margin-top: 30px;
+        }
+        .barcode-img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+        .code {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4b5563;
+            margin: 10px 0;
+        }
+        .info {
+            background: #dbeafe;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .print-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .print-btn:hover {
+            background: #1d4ed8;
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🏷️ Test Barkodları</h1>
+
+    <div class="info no-print">
+        <h3>📱 Nasıl Test Edilir?</h3>
+        <ol>
+            <li>Bu sayfayı yazdırın veya ekrandan gösterin</li>
+            <li>Satışlar veya Ürün Ekle sayfasına gidin</li>
+            <li>Barkod Tara butonuna tıklayın</li>
+            <li>Telefonunuzu/kameranızı barkoda tutun</li>
+            <li>Sistem otomatik olarak okuyacak</li>
+        </ol>
+    </div>
+
+    <div class="tip no-print">
+        <h3>💡 İpuçları:</h3>
+        <ul>
+            <li>Barkod temiz ve düz olmalı</li>
+            <li>İyi ışıklandırılmış bir yerde deneyin</li>
+            <li>Barkodu yeşil çerçevenin içine alın</li>
+            <li>Kamera izni vermeyi unutmayın</li>
+            <li>Manuel giriş seçeneğini de kullanabilirsiniz</li>
+        </ul>
+    </div>
+
+    <!-- Veritabanındaki Ürünler -->
+    <h2>Mevcut Ürün Barkodları (Veritabanında)</h2>
+
+    <div class="barcode-container">
+        <h3>Süt 1L</h3>
+        <svg class="barcode-img" id="barcode1"></svg>
+        <div class="code">8690504001010</div>
+        <p>Fiyat: ₺25.50</p>
+    </div>
+
+    <div class="barcode-container">
+        <h3>Ekmek</h3>
+        <svg class="barcode-img" id="barcode2"></svg>
+        <div class="code">8690504001027</div>
+        <p>Fiyat: ₺8.00</p>
+    </div>
+
+    <div class="barcode-container">
+        <h3>Kola 2.5L</h3>
+        <svg class="barcode-img" id="barcode3"></svg>
+        <div class="code">8690504002010</div>
+        <p>Fiyat: ₺45.00</p>
+    </div>
+
+    <div class="barcode-container">
+        <h3>Su 5L</h3>
+        <svg class="barcode-img" id="barcode4"></svg>
+        <div class="code">8690504002027</div>
+        <p>Fiyat: ₺12.00</p>
+    </div>
+
+    <div class="no-print" style="text-align: center; margin-top: 30px;">
+        <button class="print-btn" onclick="window.print()">🖨️ Barkodları Yazdır</button>
+        <button class="print-btn" onclick="window.location.href='/'">↩️ Ana Sayfaya Dön</button>
+    </div>
+
+    <!-- JsBarcode kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script>
+        // Barkodları oluştur
+        JsBarcode("#barcode1", "8690504001010", {
+            format: "EAN13",
+            width: 2,
+            height: 100,
+            displayValue: true
+        });
+
+        JsBarcode("#barcode2", "8690504001027", {
+            format: "EAN13",
+            width: 2,
+            height: 100,
+            displayValue: true
+        });
+
+        JsBarcode("#barcode3", "8690504002010", {
+            format: "EAN13",
+            width: 2,
+            height: 100,
+            displayValue: true
+        });
+
+        JsBarcode("#barcode4", "8690504002027", {
+            format: "EAN13",
+            width: 2,
+            height: 100,
+            displayValue: true
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+module.exports=[65391,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(10578);a.n(d("[project]/Downloads/dark-1/barkod/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},24866,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(10578);a.n(d("[project]/Downloads/dark-1/barkod/node_modules/next/dist/client/components/builtin/global-error.js"))},82747,a=>{"use strict";a.i(65391);var b=a.i(24866);a.n(b)}];
+
+//# sourceMappingURL=edace_next_dist_client_components_builtin_global-error_205b97f0.js.map

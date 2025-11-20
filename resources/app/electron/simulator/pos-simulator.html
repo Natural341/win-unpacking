@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Terminal Simulator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .pos-terminal {
+            background: #2d3748;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .terminal-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .terminal-header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .terminal-header p {
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        .display {
+            background: #1a202c;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 150px;
+            color: #48bb78;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .display-line {
+            margin-bottom: 8px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.online {
+            background: #48bb78;
+        }
+
+        .status-indicator.offline {
+            background: #f56565;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .transaction-info {
+            background: #4a5568;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            color: #a0aec0;
+        }
+
+        .info-value {
+            font-weight: bold;
+        }
+
+        .amount-display {
+            font-size: 24px !important;
+            color: #48bb78 !important;
+        }
+
+        .controls {
+            display: grid;
+            gap: 10px;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #38a169, #2f855a);
+        }
+
+        .btn-error {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+        }
+
+        .btn-error:hover {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #dd6b20, #c05621);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #3182ce, #2c5282);
+        }
+
+        .scenario-selector {
+            background: #4a5568;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .scenario-selector label {
+            display: block;
+            color: #a0aec0;
+            font-size: 12px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .scenario-selector select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #2d3748;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .connection-status {
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .connection-status.connected {
+            background: rgba(72, 187, 120, 0.2);
+            color: #48bb78;
+        }
+
+        .connection-status.disconnected {
+            background: rgba(245, 101, 101, 0.2);
+            color: #f56565;
+        }
+
+        .card-reader {
+            background: #1a202c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card-slot {
+            width: 100%;
+            height: 60px;
+            background: #2d3748;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0aec0;
+            font-size: 12px;
+            margin-bottom: 10px;
+            border: 2px dashed #4a5568;
+        }
+
+        .card-slot.active {
+            border-color: #48bb78;
+            color: #48bb78;
+            animation: cardRead 2s ease-in-out;
+        }
+
+        @keyframes cardRead {
+            0%, 100% { border-color: #48bb78; }
+            50% { border-color: #38a169; background: rgba(72, 187, 120, 0.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="pos-terminal">
+        <div class="terminal-header">
+            <h1>🏦 POS Terminal Simulator</h1>
+            <p>Test & Development Mode</p>
+        </div>
+
+        <div class="connection-status" id="connectionStatus">
+            <span class="status-indicator offline"></span>
+            Bağlantı Bekleniyor...
+        </div>
+
+        <div class="display" id="display">
+            <div class="display-line">
+                <span class="status-indicator online"></span>
+                POS Terminal Hazır
+            </div>
+            <div class="display-line">İşlem bekleniyor...</div>
+        </div>
+
+        <div class="transaction-info" id="transactionInfo" style="display: none;">
+            <div class="info-row">
+                <span class="info-label">İşlem Tipi:</span>
+                <span class="info-value" id="transactionType">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Tutar:</span>
+                <span class="info-value amount-display" id="transactionAmount">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Taksit:</span>
+                <span class="info-value" id="transactionInstallment">-</span>
+            </div>
+        </div>
+
+        <div class="card-reader">
+            <div class="card-slot" id="cardSlot">
+                💳 Kart Okutun veya Chip Takın
+            </div>
+            <div style="color: #a0aec0; font-size: 12px; margin-top: 10px;">Sanal kart seçin:</div>
+            <select id="cardSelect" style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 5px; background: #2d3748; color: white; border: 1px solid #4a5568; font-size: 13px; cursor: pointer;">
+                <option value="visa">💳 Visa ************1234</option>
+                <option value="mastercard">💳 Mastercard ************5678</option>
+                <option value="amex">💳 American Express ************9012</option>
+                <option value="troy">💳 Troy ************3456</option>
+                <option value="bonus">💳 Bonus Kart ************7890</option>
+                <option value="world">💳 World Kart ************2468</option>
+                <option value="paraf">💳 Paraf Kart ************1357</option>
+                <option value="maximum">💳 Maximum Kart ************9753</option>
+            </select>
+        </div>
+
+        <div class="scenario-selector">
+            <label>Test Senaryosu Seç:</label>
+            <select id="scenarioSelect">
+                <option value="success">✅ Başarılı İşlem</option>
+                <option value="declined">❌ Kart Reddedildi</option>
+                <option value="timeout">⏱️ Zaman Aşımı</option>
+                <option value="insufficient">💰 Yetersiz Bakiye</option>
+                <option value="invalid_card">🚫 Geçersiz Kart</option>
+                <option value="pin_error">🔐 Hatalı PIN</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <button class="btn-success" id="btnApprove">
+                    ✓ Onayla
+                </button>
+                <button class="btn-error" id="btnDecline">
+                    ✗ Reddet
+                </button>
+            </div>
+            <div class="control-group">
+                <button class="btn-warning" id="btnCancel">
+                    ⟲ İptal
+                </button>
+                <button class="btn-secondary" id="btnTest">
+                    🔧 Test
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pos-simulator.js"></script>
+</body>
+</html>
